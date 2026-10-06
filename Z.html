@@ -1,0 +1,615 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استوديو زينب ✨</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:#111;
+    color:white;
+    overflow-x:hidden;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:min(950px,100%);
+    padding:35px;
+    border-radius:30px;
+    text-align:center;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 20px 80px rgba(0,0,0,.6);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:65px;
+}
+
+.small{
+    color:#aaa;
+    letter-spacing:3px;
+    font-size:12px;
+}
+
+h1{
+    font-size:clamp(45px,10vw,80px);
+    margin:15px 0;
+    background:linear-gradient(90deg,#e5bd78,#fff,#d9a75e);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+h2{
+    color:#e7c184;
+}
+
+p{
+    line-height:2;
+    color:#ddd;
+}
+
+button{
+    border:none;
+    padding:14px 23px;
+    margin:7px;
+    border-radius:15px;
+    background:#e4bd78;
+    color:#17120c;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* الغرفة */
+
+.room{
+    position:relative;
+    width:100%;
+    height:520px;
+    margin-top:20px;
+    overflow:hidden;
+    border-radius:25px;
+    background:#d8d0c7;
+    box-shadow:0 20px 50px #0008;
+    transition:.4s;
+}
+
+.wall{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:68%;
+    background:#d8d0c7;
+    transition:.4s;
+}
+
+.floor{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:32%;
+    background:
+    repeating-linear-gradient(
+        90deg,
+        #8a684f 0px,
+        #8a684f 75px,
+        #6d513f 75px,
+        #6d513f 80px
+    );
+    transition:.4s;
+}
+
+/* الشباك */
+
+.window{
+    position:absolute;
+    top:70px;
+    right:70px;
+    width:230px;
+    height:200px;
+    background:linear-gradient(#182b3b,#6c9eb5);
+    border:12px solid #55483e;
+    box-shadow:inset 0 0 30px #fff4;
+}
+
+.window:before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:6px;
+    background:#55483e;
+}
+
+.window:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:50%;
+    height:6px;
+    background:#55483e;
+}
+
+/* اللوحة */
+
+.art{
+    position:absolute;
+    top:70px;
+    left:70px;
+    width:190px;
+    height:150px;
+    border:12px solid #57483c;
+    background:
+    linear-gradient(
+        135deg,
+        #caa56d,
+        #77816d,
+        #d7c5a5
+    );
+    box-shadow:0 12px 20px #0004;
+}
+
+/* الكنبة */
+
+.sofa{
+    position:absolute;
+    left:100px;
+    bottom:105px;
+    width:390px;
+    height:115px;
+    border-radius:30px 30px 12px 12px;
+    background:#756b65;
+    box-shadow:0 15px 0 #5a514d;
+}
+
+.sofa:before{
+    content:"";
+    position:absolute;
+    left:25px;
+    top:-35px;
+    width:150px;
+    height:80px;
+    background:#82766f;
+    border-radius:25px;
+}
+
+.sofa:after{
+    content:"";
+    position:absolute;
+    right:25px;
+    top:-35px;
+    width:150px;
+    height:80px;
+    background:#82766f;
+    border-radius:25px;
+}
+
+/* الطاولة */
+
+.table{
+    position:absolute;
+    right:250px;
+    bottom:55px;
+    width:170px;
+    height:55px;
+    background:#694833;
+    border-radius:50%;
+}
+
+.table:after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:100px;
+    background:#4b3324;
+    left:76px;
+    top:35px;
+}
+
+/* النبتة */
+
+.plant{
+    position:absolute;
+    right:70px;
+    bottom:80px;
+    font-size:85px;
+}
+
+/* المصباح */
+
+.lamp{
+    position:absolute;
+    right:45px;
+    bottom:120px;
+    width:10px;
+    height:150px;
+    background:#4a4039;
+}
+
+.lamp:before{
+    content:"";
+    position:absolute;
+    width:75px;
+    height:50px;
+    left:-32px;
+    top:-15px;
+    background:#e2b76e;
+    border-radius:50% 50% 15px 15px;
+    box-shadow:0 0 50px #e4bd78;
+}
+
+/* الرسالة */
+
+.message{
+    margin-top:25px;
+    padding:30px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#ffffff0c,#e4bd7818);
+    border:1px solid #e4bd7855;
+    animation:appear 1s ease;
+}
+
+.message .heart{
+    font-size:50px;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* موبايل */
+
+@media(max-width:600px){
+
+    .card{
+        padding:20px;
+    }
+
+    .room{
+        height:420px;
+    }
+
+    .window{
+        width:130px;
+        height:120px;
+        right:25px;
+        top:35px;
+        border-width:8px;
+    }
+
+    .art{
+        width:110px;
+        height:90px;
+        left:25px;
+        top:45px;
+        border-width:7px;
+    }
+
+    .sofa{
+        left:30px;
+        width:260px;
+        height:90px;
+        bottom:90px;
+    }
+
+    .sofa:before,
+    .sofa:after{
+        width:95px;
+        height:60px;
+        top:-25px;
+    }
+
+    .plant{
+        font-size:55px;
+        right:20px;
+        bottom:55px;
+    }
+
+    .table{
+        right:130px;
+        bottom:40px;
+        width:120px;
+    }
+
+    .lamp{
+        right:20px;
+        bottom:110px;
+        height:120px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- البداية -->
+
+<section id="start" class="page">
+
+<div class="card">
+
+    <div class="logo">🏠✨</div>
+
+    <div class="small">
+        PRIVATE INTERIOR STUDIO
+    </div>
+
+    <h1>زينب</h1>
+
+    <p>
+        عندي لج مكان صغير جداً...
+        <br>
+        بس بيه شي معمول خصيصاً إلچ 🌚
+    </p>
+
+    <button onclick="enterStudio()">
+        دخول للاستوديو ✨
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- الاستوديو -->
+
+<section id="studio" class="page hidden">
+
+<div class="card">
+
+    <div class="small">
+        ZAINAB'S SECRET INTERIOR STUDIO
+    </div>
+
+    <h2>
+        صممي الغرفة على ذوقچ 🎨
+    </h2>
+
+    <p>
+        غيري الألوان والإضاءة وشوفي شنو يعجبچ.
+    </p>
+
+
+    <div class="room" id="room">
+
+        <div class="wall" id="wall"></div>
+
+        <div class="floor" id="floor"></div>
+
+        <div class="window"></div>
+
+        <div class="art"></div>
+
+        <div class="sofa"></div>
+
+        <div class="table"></div>
+
+        <div class="plant">
+            🪴
+        </div>
+
+        <div class="lamp"></div>
+
+    </div>
+
+
+    <div>
+
+        <button onclick="changeWall()">
+            🎨 لون الجدار
+        </button>
+
+        <button onclick="changeFloor()">
+            🪵 الأرضية
+        </button>
+
+        <button onclick="changeLight()">
+            💡 الإضاءة
+        </button>
+
+        <button onclick="showSurprise()">
+            🎁 المفاجأة
+        </button>
+
+    </div>
+
+
+    <!-- الرسالة السرية -->
+
+    <div id="message" class="message hidden">
+
+        <div class="heart">
+            🤍✨
+        </div>
+
+        <h2>
+            إلى زينب...
+        </h2>
+
+        <p>
+            يمكن هاي مجرد غرفة معمولة بالبرمجة،
+            <br>
+            بس كل تفصيلة بيها انعملت حتى أفرحچ.
+        </p>
+
+        <p>
+            وبما إنچ تدرسين تصميم داخلي...
+            <br>
+            أتمنى كل فكرة حلوة تجي ببالچ
+            <br>
+            تتحول يوم من الأيام إلى مكان أجمل
+            من اللي تتخيلينه. 🌷
+        </p>
+
+        <h2>
+            لا توقفين عن الإبداع يا زينب 🎨
+        </h2>
+
+        <p>
+            — من شخص حب يسويلچ مفاجأة صغيرة 🌚
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<script>
+
+function enterStudio(){
+
+    document.getElementById("start")
+    .classList.add("hidden");
+
+    document.getElementById("studio")
+    .classList.remove("hidden");
+
+}
+
+
+/* ألوان الجدار */
+
+let wallIndex = 0;
+
+const walls = [
+    "#d8d0c7",
+    "#cbb9a5",
+    "#b9c5bd",
+    "#d8b7b0",
+    "#c7c1d8",
+    "#b8a58e"
+];
+
+function changeWall(){
+
+    wallIndex++;
+
+    if(wallIndex >= walls.length){
+        wallIndex = 0;
+    }
+
+    document.getElementById("wall")
+    .style.background = walls[wallIndex];
+
+}
+
+
+/* الأرضية */
+
+let floorIndex = 0;
+
+const floors = [
+    ["#8a684f","#6d513f"],
+    ["#6d6a64","#4d4b49"],
+    ["#9b7c5d","#71563f"],
+    ["#554d48","#3c3734"]
+];
+
+function changeFloor(){
+
+    floorIndex++;
+
+    if(floorIndex >= floors.length){
+        floorIndex = 0;
+    }
+
+    let c = floors[floorIndex];
+
+    document.getElementById("floor")
+    .style.background =
+    `repeating-linear-gradient(
+        90deg,
+        ${c[0]} 0px,
+        ${c[0]} 75px,
+        ${c[1]} 75px,
+        ${c[1]} 80px
+    )`;
+}
+
+
+/* الإضاءة */
+
+let lightOn = true;
+
+function changeLight(){
+
+    const room =
+    document.getElementById("room");
+
+    lightOn = !lightOn;
+
+    if(lightOn){
+
+        room.style.filter =
+        "brightness(1)";
+
+    }else{
+
+        room.style.filter =
+        "brightness(.65)";
+
+    }
+
+}
+
+
+/* المفاجأة */
+
+function showSurprise(){
+
+    const message =
+    document.getElementById("message");
+
+    message.classList.remove("hidden");
+
+    message.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
+```
